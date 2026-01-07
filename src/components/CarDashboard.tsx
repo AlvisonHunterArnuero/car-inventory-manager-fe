@@ -91,7 +91,7 @@ export function CarDashboard() {
         </Box>
       </Container>
     </AppBar>
-    <Container sx={{ mt: 4 }}>
+    <Container sx={{ mt: 4, mb: 12 }}>
       <Grid container spacing={3}>
         {filteredCars.map((car) => (
           <Grid key={car.id} size={{ xs: 12, sm: 6, md: 4 }}>
@@ -100,8 +100,6 @@ export function CarDashboard() {
         ))}
       </Grid>
     </Container>
-
-
   </>
   );
 }
