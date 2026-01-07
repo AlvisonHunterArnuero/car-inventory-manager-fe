@@ -1,7 +1,7 @@
-import { renderHook, waitFor } from "@testing-library/react";
-import { MockedProvider } from "@apollo/client/testing";
-import { useCars } from "../useCars";
-import { GET_CARS } from "../../graphql/queries";
+import { renderHook, waitFor } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+import { useCars } from '../useCars';
+import { GET_CARS } from '../../graphql/queries';
 
 const mocks = [
   {
@@ -10,14 +10,14 @@ const mocks = [
       data: {
         cars: [
           {
-            id: "1",
-            make: "Audi",
-            model: "Q5",
+            id: '1',
+            make: 'Audi',
+            model: 'Q5',
             year: 2023,
-            color: "Blue",
-            mobile: "",
-            tablet: "",
-            desktop: "",
+            color: 'Blue',
+            mobile: '',
+            tablet: '',
+            desktop: '',
           },
         ],
       },
@@ -25,8 +25,8 @@ const mocks = [
   },
 ];
 
-describe("useCars Hook", () => {
-  it("should return loading state initially", () => {
+describe('useCars Hook', () => {
+  it('should return loading state initially', () => {
     const { result } = renderHook(() => useCars(), {
       wrapper: ({ children }) => (
         <MockedProvider mocks={mocks}>{children}</MockedProvider>
@@ -35,7 +35,7 @@ describe("useCars Hook", () => {
     expect(result.current.loading).toBe(true);
   });
 
-  it("should return cars data after fetching", async () => {
+  it('should return cars data after fetching', async () => {
     const { result } = renderHook(() => useCars(), {
       wrapper: ({ children }) => (
         <MockedProvider mocks={mocks}>{children}</MockedProvider>
@@ -44,6 +44,6 @@ describe("useCars Hook", () => {
 
     await waitFor(() => expect(result.current.loading).toBe(false));
     expect(result.current.cars).toHaveLength(1);
-    expect(result.current.cars[0].model).toBe("Q5");
+    expect(result.current.cars[0].model).toBe('Q5');
   });
 });

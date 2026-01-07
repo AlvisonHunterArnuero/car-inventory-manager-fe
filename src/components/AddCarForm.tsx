@@ -20,12 +20,9 @@ export function AddCarForm({ onAdd }: AddCarFormProps) {
     model: '',
     year: '',
     color: '',
-    mobile:
-      'https://placehold.jp/30/63645d/ffffff/300x250.png?text=Mobile',
-    tablet:
-      'https://placehold.jp/30/1b3a2e/ffffff/900x250.png?text=Tablet',
-    desktop:
-      'https://placehold.jp/30/303c3b/ffffff/1200x250.png?text=Desktop',
+    mobile: 'https://placehold.jp/30/63645d/ffffff/300x250.png?text=Mobile',
+    tablet: 'https://placehold.jp/30/1b3a2e/ffffff/900x250.png?text=Tablet',
+    desktop: 'https://placehold.jp/30/303c3b/ffffff/1200x250.png?text=Desktop',
   });
 
   const handleSubmit = (e: React.FormEvent) => {

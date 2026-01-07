@@ -28,11 +28,8 @@ export function CarDashboard() {
   } = useCarFilters(cars);
 
   if (loading)
-    return (
-      <CircularProgress sx={{ display: 'block', m: 'auto', mt: 5 }} />
-    );
-  if (error)
-    return <Typography color="error">Error loading cars!</Typography>;
+    return <CircularProgress sx={{ display: 'block', m: 'auto', mt: 5 }} />;
+  if (error) return <Typography color="error">Error loading cars!</Typography>;
 
   return (
     <>

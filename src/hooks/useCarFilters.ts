@@ -1,10 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo } from 'react';
 
 export function useCarFilters(initialCars: any[]) {
   const [localCars, setLocalCars] = useState<any[]>([]);
-  const [search, setSearch] = useState("");
-  const [selectedYear, setSelectedYear] = useState<string>("All");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [search, setSearch] = useState('');
+  const [selectedYear, setSelectedYear] = useState<string>('All');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const allCars = useMemo(
     () => [...initialCars, ...localCars],
@@ -15,7 +15,7 @@ export function useCarFilters(initialCars: any[]) {
     const years = allCars
       .filter((car) => car.year !== undefined && car.year !== null)
       .map((car) => car.year.toString());
-    return ["All", ...Array.from(new Set(years))].sort((a, b) =>
+    return ['All', ...Array.from(new Set(years))].sort((a, b) =>
       b.localeCompare(a)
     );
   }, [allCars]);
@@ -27,12 +27,14 @@ export function useCarFilters(initialCars: any[]) {
           .toLowerCase()
           .includes(search.toLowerCase());
         const matchesYear =
-          selectedYear === "All" ||
-          (car.year !== undefined && car.year !== null && car.year.toString() === selectedYear);
+          selectedYear === 'All' ||
+          (car.year !== undefined &&
+            car.year !== null &&
+            car.year.toString() === selectedYear);
         return matchesModel && matchesYear;
       })
       .sort((a, b) => {
-        return sortOrder === "asc"
+        return sortOrder === 'asc'
           ? a.model.localeCompare(b.model)
           : b.model.localeCompare(a.model);
       });

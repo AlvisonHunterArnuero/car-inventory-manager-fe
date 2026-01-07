@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi } from 'vitest';
 
 /**
  * Simulates a window resize and updates matchMedia for MUI hooks.
@@ -7,12 +7,12 @@ import { vi } from "vitest";
 export const resizeScreen = (width: number) => {
   window.innerWidth = width;
 
-  window.dispatchEvent(new Event("resize"));
+  window.dispatchEvent(new Event('resize'));
 
   window.matchMedia = vi.fn().mockImplementation((query: string) => {
     let matches = false;
 
-    if (query.includes("min-width") && query.includes("max-width")) {
+    if (query.includes('min-width') && query.includes('max-width')) {
       const minMatch = query.match(/min-width:\s*(\d+)/);
       const maxMatch = query.match(/max-width:\s*([\d.]+)/);
       if (minMatch && maxMatch) {
@@ -20,13 +20,13 @@ export const resizeScreen = (width: number) => {
         const maxWidth = parseFloat(maxMatch[1]);
         matches = width >= minWidth && width <= maxWidth;
       }
-    } else if (query.includes("max-width")) {
+    } else if (query.includes('max-width')) {
       const match = query.match(/max-width:\s*([\d.]+)/);
       if (match) {
         const maxWidth = parseFloat(match[1]);
         matches = width <= maxWidth;
       }
-    } else if (query.includes("min-width")) {
+    } else if (query.includes('min-width')) {
       const match = query.match(/min-width:\s*(\d+)/);
       if (match) {
         const minWidth = parseInt(match[1]);

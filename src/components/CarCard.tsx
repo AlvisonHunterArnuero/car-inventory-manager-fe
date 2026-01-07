@@ -11,15 +11,9 @@ export function CarCard({ car }: { car: any }) {
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(
-    theme.breakpoints.between('sm', 'md')
-  );
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
-  const imageUrl = isMobile
-    ? car.mobile
-    : isTablet
-    ? car.tablet
-    : car.desktop;
+  const imageUrl = isMobile ? car.mobile : isTablet ? car.tablet : car.desktop;
 
   return (
     <Card
