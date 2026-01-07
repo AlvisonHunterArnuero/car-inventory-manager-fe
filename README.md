@@ -9,6 +9,11 @@ A high-performance, dark-themed car inventory management interface built with **
 
 <img width="1199" height="496" alt="Automotive Inventory Dashboard Screenshot" src="https://github.com/user-attachments/assets/8389b245-b785-4ccf-89b1-95e40e002005" />
 
+
+## Video Demo
+
+<video src="https://github.com/user-attachments/assets/09c1ba12-e3c0-4e6f-a76a-557e9f53d39a" controls width="100%"></video>
+
 ---
 
 ## � Table of Contents
