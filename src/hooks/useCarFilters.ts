@@ -12,7 +12,9 @@ export function useCarFilters(initialCars: any[]) {
   );
 
   const availableYears = useMemo(() => {
-    const years = allCars.map((car) => car.year.toString());
+    const years = allCars
+      .filter((car) => car.year !== undefined && car.year !== null)
+      .map((car) => car.year.toString());
     return ["All", ...Array.from(new Set(years))].sort((a, b) =>
       b.localeCompare(a)
     );
@@ -25,7 +27,8 @@ export function useCarFilters(initialCars: any[]) {
           .toLowerCase()
           .includes(search.toLowerCase());
         const matchesYear =
-          selectedYear === "All" || car.year.toString() === selectedYear;
+          selectedYear === "All" ||
+          (car.year !== undefined && car.year !== null && car.year.toString() === selectedYear);
         return matchesModel && matchesYear;
       })
       .sort((a, b) => {

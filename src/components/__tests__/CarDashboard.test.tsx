@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, within, waitFor } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { CarDashboard } from "../CarDashboard";
 import { GET_CARS } from "../../graphql/queries";
@@ -49,14 +49,33 @@ describe("CarDashboard Integration", () => {
     const addButton = await screen.findByText(/Add New Car/i);
     fireEvent.click(addButton);
 
-    fireEvent.change(screen.getByLabelText(/Make/i), {
+    // Wait for the modal to open and find the dialog
+    const dialog = await screen.findByRole('dialog');
+
+    // Use within to scope queries to the dialog
+    const { getByLabelText, getByText } = within(dialog);
+
+    fireEvent.change(getByLabelText(/Make/i), {
       target: { value: "Tesla" },
     });
-    fireEvent.change(screen.getByLabelText(/Model/i), {
+
+    fireEvent.change(getByLabelText(/Model/i), {
       target: { value: "Model 3" },
     });
 
-    fireEvent.click(screen.getByText(/Create/i));
-    expect(screen.getByText("Tesla Model 3")).toBeInTheDocument();
+    fireEvent.change(getByLabelText(/Year/i), {
+      target: { value: "2024" },
+    });
+
+    fireEvent.change(getByLabelText(/Color/i), {
+      target: { value: "Red" },
+    });
+
+    fireEvent.click(getByText(/Create/i));
+
+    // Wait for the new car to appear in the list
+    await waitFor(() => {
+      expect(screen.getByText("Tesla Model 3")).toBeInTheDocument();
+    });
   });
 });
