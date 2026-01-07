@@ -13,7 +13,7 @@ export const automotiveTheme = createTheme({
     },
     background: {
       default: '#0A0A0A',
-      paper: '#161616',  
+      paper: '#161616',
     },
     text: {
       primary: '#FFFFFF',
@@ -31,20 +31,20 @@ export const automotiveTheme = createTheme({
     },
     button: {
       fontWeight: 700,
-      textTransform: 'none', 
+      textTransform: 'none',
     },
   },
   shape: {
-    borderRadius: 4, 
+    borderRadius: 4,
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundImage: 'none', 
+          backgroundImage: 'none',
           border: '1px solid rgba(255, 255, 255, 0.05)',
           '&:hover': {
-            borderColor: '#D32F2F', 
+            scale: 1.04,
             transition: '0.3s ease-in-out',
           },
         },

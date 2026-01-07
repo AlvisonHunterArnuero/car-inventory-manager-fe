@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { 
-  Button, Dialog, DialogTitle, DialogContent, 
-  DialogActions, TextField, Stack 
+import {
+  Button, Dialog, DialogTitle, DialogContent,
+  DialogActions, TextField, Stack
 } from "@mui/material";
 
 interface AddCarFormProps {
@@ -26,7 +26,7 @@ export function AddCarForm({ onAdd }: AddCarFormProps) {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)} sx={{ mb: 3 }}>
+      <Button variant="contained" onClick={() => setOpen(true)}>
         Add New Car
       </Button>
 
@@ -35,13 +35,13 @@ export function AddCarForm({ onAdd }: AddCarFormProps) {
           <DialogTitle>Add a New Car</DialogTitle>
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
-              <TextField label="Make" fullWidth required value={formData.make} 
+              <TextField label="Make" fullWidth required value={formData.make}
                 onChange={(e) => setFormData({...formData, make: e.target.value})} />
-              <TextField label="Model" fullWidth required value={formData.model} 
+              <TextField label="Model" fullWidth required value={formData.model}
                 onChange={(e) => setFormData({...formData, model: e.target.value})} />
-              <TextField label="Year" type="number" fullWidth required value={formData.year} 
+              <TextField label="Year" type="number" fullWidth required value={formData.year}
                 onChange={(e) => setFormData({...formData, year: e.target.value})} />
-              <TextField label="Color" fullWidth required value={formData.color} 
+              <TextField label="Color" fullWidth required value={formData.color}
                 onChange={(e) => setFormData({...formData, color: e.target.value})} />
             </Stack>
           </DialogContent>
