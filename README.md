@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# 🏎️ Automotive Inventory Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, dark-themed car inventory management interface built with **React 19**, **Material UI**, and **Apollo GraphQL**. This project features a sophisticated automotive UI, custom filtering logic, and a fully mocked backend for seamless development.
 
-Currently, two official plugins are available:
+![Dashboard Preview]("https://github.com/user-attachments/assets/8389b245-b785-4ccf-89b1-95e40e002005")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1199" height="496" alt="image" src="https://github.com/user-attachments/assets/8389b245-b785-4ccf-89b1-95e40e002005" />
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Real-time Inventory Browsing**: View a dynamic list of vehicles with high-fidelity imagery.
+* **Advanced Filtering**: Filter by model name and manufacturing year with instant UI updates.
+* **Custom Automotive Theme**: A bespoke Material UI 5/6 theme featuring a "Redline" dark mode aesthetic.
+* **Mocked GraphQL Backend**: Powered by **MSW (Mock Service Worker)** to intercept Apollo Client queries, allowing for full-stack development without a live server.
+* **Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Frontend**: React 19 (Classic JSX Runtime)
+* **Styling**: Material UI (MUI), Emotion CSS-in-JS
+* **Data Fetching**: Apollo Client (GraphQL)
+* **API Mocking**: Mock Service Worker (MSW)
+* **Build Tool**: Vite 6.0 + TypeScript
+* **Testing**: Vitest + React Testing Library
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Installation & Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Because this project uses the cutting-edge React 19, standard installation may require flags to handle library peer dependencies.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/automotive-inventory-dashboard.git](https://github.com/your-username/automotive-inventory-dashboard.git)
+    cd automotive-inventory-dashboard
+    ```
+
+2.  **Install dependencies:**
+    Due to the React 19 ecosystem transitions, use the `--legacy-peer-deps` flag to ensure compatibility:
+    ```bash
+    npm install --legacy-peer-deps
+    ```
+
+3.  **Initialize MSW:**
+    ```bash
+    npx msw init public --save
+    ```
+
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+
+## 🔧 Troubleshooting
+
+### "React is not defined"
+This project utilizes the `classic` JSX runtime in `vite.config.ts` to maximize compatibility with certain MUI/Emotion utilities. Ensure every `.tsx` file begins with:
+```tsx
+import React from 'react';
 ```
+### Dependency Conflicts
+If you encounter ERESOLVE unable to resolve dependency tree, clean your cache and reinstall with the legacy flag:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+rm -rf node_modules package-lock.json
+npm install --legacy-peer-deps
 ```
+###🧪 Running Tests
+This project uses Vitest for unit and component testing.
+
+```bash
+npm run test
+```
+### 📜 License
+Distributed under the MIT License. See LICENSE for more information.
