@@ -49,7 +49,7 @@ A high-performance, dark-themed car inventory management interface built with **
 
 ## 🌐 Demo
 
-> **Live Demo**: Coming soon! 🚧
+> **Live Demo**: Coming soon!
 >
 > **Backend Repository**: [Link to backend repo - if applicable]
 

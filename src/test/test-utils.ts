@@ -9,20 +9,40 @@ export const resizeScreen = (width: number) => {
 
   window.dispatchEvent(new Event("resize"));
 
-  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
-    matches:
-      (query.includes("max-width:640px") && width <= 640) ||
-      (query.includes("min-width:1024px") && width >= 1024) ||
-      (query.includes("min-width:641px") &&
-        query.includes("max-width:1023px") &&
-        width > 640 &&
-        width < 1024),
-    media: query,
-    onchange: null,
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  }));
+  window.matchMedia = vi.fn().mockImplementation((query: string) => {
+    let matches = false;
+
+    if (query.includes("min-width") && query.includes("max-width")) {
+      const minMatch = query.match(/min-width:\s*(\d+)/);
+      const maxMatch = query.match(/max-width:\s*([\d.]+)/);
+      if (minMatch && maxMatch) {
+        const minWidth = parseInt(minMatch[1]);
+        const maxWidth = parseFloat(maxMatch[1]);
+        matches = width >= minWidth && width <= maxWidth;
+      }
+    } else if (query.includes("max-width")) {
+      const match = query.match(/max-width:\s*([\d.]+)/);
+      if (match) {
+        const maxWidth = parseFloat(match[1]);
+        matches = width <= maxWidth;
+      }
+    } else if (query.includes("min-width")) {
+      const match = query.match(/min-width:\s*(\d+)/);
+      if (match) {
+        const minWidth = parseInt(match[1]);
+        matches = width >= minWidth;
+      }
+    }
+
+    return {
+      matches,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    };
+  });
 };

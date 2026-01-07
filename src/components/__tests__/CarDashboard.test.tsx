@@ -49,10 +49,7 @@ describe("CarDashboard Integration", () => {
     const addButton = await screen.findByText(/Add New Car/i);
     fireEvent.click(addButton);
 
-    // Wait for the modal to open and find the dialog
     const dialog = await screen.findByRole('dialog');
-
-    // Use within to scope queries to the dialog
     const { getByLabelText, getByText } = within(dialog);
 
     fireEvent.change(getByLabelText(/Make/i), {
@@ -73,7 +70,6 @@ describe("CarDashboard Integration", () => {
 
     fireEvent.click(getByText(/Create/i));
 
-    // Wait for the new car to appear in the list
     await waitFor(() => {
       expect(screen.getByText("Tesla Model 3")).toBeInTheDocument();
     });
